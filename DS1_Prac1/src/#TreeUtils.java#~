@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class TreeUtils
+ {
+        
+    /**
+     * Determine whether one tree node structure is similar (has the same structure) as another.
+     */
+    public static boolean similar(BinaryTreeNode treeStructOne, BinaryTreeNode treeStructTwo)
+{
+	int height1 = treeStructureOne.getHeight();
+	int height2 = treeStructureTwo.getHeight();
+
+	if (height1 != height2)
+	    return false;
+	
+	else
+	{
+	
+	}
+
+		return true;
+    }
+    
+    /**
+     * Obtain a list containing the root node of the given structure i.e. tNode itself.
+     */
+    public static List<BinaryTreeNode> levelZero(BinaryTreeNode tNode) 
+    {
+        
+	List<BinaryTreeNode> nodeList = new List<BinaryTreeNode>();
+	nodeList.add(tNode);
+	return nodeList;
+    }//end list node
+    
+    
+    /**
+     * Given a list of nodes, obtain the next level. 
+     * 
+     * <p>
+     * If the tree structure is incomplete, <code>BinaryTreeNode.EMPTY_NODE</code> is inserted as a place holder for each
+     * missing node.
+     * </p>
+     */
+    public static List<BinaryTreeNode> nextLevel(List<BinaryTreeNode> level) 
+{
+		// Your code here
+		return null;
+    }
+    
+    /**
+     * Determine whether node is a place holder i.e. <code>node==BinaryTreeNode.EMPTY_NODE</code>
+     */
+    public static boolean isPlaceHolder(BinaryTreeNode node) {
+		// Your code here
+		return false;
+    }
+    
+}

@@ -1,0 +1,132 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+/**
+ * Utility procedures for binary tree structures.
+ * 
+ * @version 25/2/2015
+ */
+public class TreeUtils {
+        
+    /**
+     * Determine whether one tree node structure is similar (has the same structure) as another.
+     */
+    public static boolean similar(BinaryTreeNode treeStructOne, BinaryTreeNode treeStructTwo) {
+	int height1 = treeStructOne.getHeight();
+	int height2 = treeStructTwo.getHeight();
+
+	boolean left = false;
+	boolean right = false;
+	boolean ans = false;
+
+	if (height1 != height2)
+	    return false;
+	
+	//if they give empty nodes
+	if (treeStructOne.getRoot()== null && treeStructTwo.getRoot()==null)
+	{
+	    return false;//tutor said they couldn't be equal
+	}
+	
+	//one empty and other not, cant be similar
+	if (treeStructOne.getRoot()== null || treeStructTwo.getRoot()==null)
+	{
+	    return false;
+	}
+
+	//left branches of tree
+	if (treeStructOne.hasLeft() != null && treeStructTwo.hasLeft() !=null)
+	    {
+		left = similar(treeStructOne.getLeft(),treeStructTwo.getLeft());
+	    }
+
+	else if (treeStructOne.hasLeft()== null && treeStructTwo.hasLeft() ==null)
+	    {
+		left = true;
+	    }
+	
+	//right branches of tree
+	if (treeStructOne.hasRight() != null && treeStructTwo.hasRight() !=null)
+	    {
+		right = similar(treeStructOne.getRight(),treeStructTwo.getRight());
+	    }
+
+	else if (treeStructOne.hasRight()== null && treeStructTwo.hasRight() ==null)
+	    {
+		right = true;
+	    }
+
+	if (left == true && right == true)
+	    ans = true;
+	
+		
+       	return ans;
+    }
+    
+    /**
+     * Obtain a list containing the root node of the given structure i.e. tNode itself.
+     */
+    public static List<BinaryTreeNode> levelZero(BinaryTreeNode tNode) 
+    {
+        
+	List<BinaryTreeNode> nodeList = new List<BinaryTreeNode>();
+	nodeList.add(tNode);
+	return nodeList;
+    }//end list node
+    
+    
+    /**
+     * Given a list of nodes, obtain the next level. 
+     * 
+     * <p>
+     * If the tree structure is incomplete, <code>BinaryTreeNode.EMPTY_NODE</code> is inserted as a place holder for each
+     * missing node.
+     * </p>
+     */
+    public static List<BinaryTreeNode> nextLevel(List<BinaryTreeNode> level) {
+	int len = level.size();
+	List<BinaryTreeNode> returnList = new List<BinaryTreeNode>();
+	BinarytreeNode temp;
+	BinarytreeNode empty;
+
+	for (int i = 0; i<len; i++)
+	{
+	    temp = level.get(i);
+
+	    if (temp.hasLeft == true)
+	    {
+		returnList.add(temp.getLeft());
+	    }//end for hasleft true
+
+	    if (temp.hasLeft == false)
+	    {
+		returnList.add(empty);
+	    }//end for hasleft false
+
+	    if (temp.hasRight == true)
+	    {
+		returnList.add(temp.getRight());
+	    }//end for hasright true
+
+	    if (temp.hasRightt == false)
+	    {
+		returnList.add(empty);
+	    }//end for hasRight false
+        }//end fori
+
+		return returnList;
+    }//end next level
+    
+    /**
+     * Determine whether node is a place holder i.e. <code>node==BinaryTreeNode.EMPTY_NODE</code>
+     */
+    public static boolean isPlaceHolder(BinaryTreeNode node)
+ {
+    
+     if(node == null)
+	 return true;
+     else
+	 return false;
+ }//end place holder
+    
+}

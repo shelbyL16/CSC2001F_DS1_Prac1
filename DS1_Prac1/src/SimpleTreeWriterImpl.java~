@@ -1,0 +1,93 @@
+import java.io.PrintStream;
+import java.math.*;
+public class SimpleTreeWriterImpl implements SimpleTreeWriter
+{
+
+    PrintStream mine;
+
+    public SimpleTreeWriterImpl(PrintStream two)
+    {
+	mine = two;
+    }//end constructor
+  
+    public void setDestination(PrintStream stream)
+    {
+	mine = stream;
+    }
+    
+     public void write(BinaryTreeNode tree)
+    {
+	//get height of tree
+		int height = tree.getHeight();
+			
+		//finding out leading zeros
+		String large = ""+tree.getLargest();
+		int lenLarge = large.length();
+		
+	 	//obtaining first node ie root
+		String rootItem = ""+tree.getItem();
+		int rootLen = rootItem.length();
+		
+		//leading zeros
+		if (rootLen != lenLarge)
+		{
+			int space = lenLarge - rootLen;
+			
+			for (int i = 0; i<space; i++)
+			{
+				String newStr = "";
+				newStr = "0"+rootItem;
+				rootItem = newStr;
+			}//end for loop zero
+		}//end leading zeros if
+		
+		int spaceB = (Math.pow(2,height-newLevelLen) -1)/2;
+		
+		//spaces before for root
+		for (int k = 0; k<spaceB; k++)
+		{
+			System.out.print(" ");
+		}//end for 
+		System.out.println(rootItem);
+		
+		//allowing next level
+		List<BinaryTreeNode> level = new List<BinaryTreeNode>();
+		List<BinaryTreeNode> newLevel = new List<BinaryTreeNode>();
+		
+		//repeating next levels and going through tree
+		for (int h = (height -1); h>=0;h--)
+		{
+			newLevel = nextLevel(level);
+			int newLevelLen = newLevel.size();
+			
+			int spaceB = (Math.pow(2,h-newLevelLen) -1)/2;
+			for (int l =0; l <spaceB; l++)
+				System.out.print(" ");
+				
+			
+			double space = (Math.pow(2,h-newLevelLen) -1);
+			
+			for (int m = 0; m<newLevelLen; m++)
+			{
+			    System.out.print(newLevelLen(m));
+				
+				/*if (m==0 || (m/2) = //a whole number)
+					{
+					//dashes between
+					for (int s = 0; s<space;s++)
+					{
+					    System.out.print("--");
+				      	}
+				}//end dash if
+			if (m==0 || (m/2) = //not a whole number)
+				{
+					//spaces between
+					for (int s = 0; s<space;s++)
+					{
+						System.out.print(" ");
+					}
+					}//end space else*/
+			}//end for
+		}//end for loop
+    }//end
+}
